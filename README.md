@@ -63,3 +63,21 @@ NEXT_PUBLIC_BICONOMY_API_KEY=your-api-key
 ```sh
 npm start
 ```
+
+## TLDR for implementing in existing app
+
+1. Update contract to inherit from ERC2771Context
+
+```solidity
+pragma solidity ^0.8.9;
+
+import "@openzeppelin/contracts/metatx/ERC2771Context.sol";
+
+contract Greeter is ERC2771Context {}
+```
+
+2. `msg.sender -> _msgSender()` - (though this contract does not use `msg.sender`)
+
+3. Configure Biconomy app with contract address and methods you'd like to use
+
+4. Update client-side code to use Biconomy SDKs
