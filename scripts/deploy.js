@@ -1,8 +1,9 @@
 const hre = require("hardhat");
 
 async function main() {
+  const [owner] = await ethers.getSigners()
   const Greeter = await hre.ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello World", "0x0b1302c23d9EB4B42A74cbefc4f9b3081ff1bf18");
+  const greeter = await Greeter.deploy("Hello World", owner.address);
   await greeter.deployed();
 
   console.log(
