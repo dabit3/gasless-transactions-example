@@ -38,6 +38,8 @@ npx hardhat compile
 npx hardhat run scripts/deploy.js --network polygon
 ```
 
+6. Update the `greeterAddress` in `pages/index.js`
+
 ### Biconomy integration
 
 1. Create an account on [Biconomy](biconomy.io)
