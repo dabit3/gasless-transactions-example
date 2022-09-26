@@ -42,7 +42,7 @@ npx hardhat run scripts/deploy.js --network polygon
 
 ### Biconomy integration
 
-1. Create an account on [Biconomy](biconomy.io)
+1. Create an account on [Biconomy](http://biconomy.io)
 
 2. Create a new app. Choose the network you'd like to use (I deployed to Polygon).
 
