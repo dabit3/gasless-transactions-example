@@ -1,34 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Gasless transactions via relayer example
 
-## Getting Started
+This is a basic example project showing how to implement gasless meta-transactions via a Biconomy relayer and [ERC2771Context](https://docs.openzeppelin.com/contracts/4.x/api/metatx).
 
-First, run the development server:
+### Project setup
 
-```bash
-npm run dev
-# or
-yarn dev
+1. Clone the repo
+
+```sh
+git clone git@github.com:dabit3/gasless-transactions-example.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```sh
+cd gasless-transactions-example
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+npm install
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# or
 
-## Learn More
+yarn
+```
 
-To learn more about Next.js, take a look at the following resources:
+3. Configure `PRIVATE_KEY` and `INFURA_ENDPOINT` environment variables.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Also if you are deploying to a network other than Polygon, you can configure that information in `hardhat.config.js`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. Compile the project
 
-## Deploy on Vercel
+```sh
+npx hardhat compile
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. Deploy the smart contract
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```sh
+npx hardhat run scripts/deploy.js --network polygon
+```
+
+### Biconomy integration
+
+1. Create an account on [Biconomy](biconomy.io)
+
+2. Create a new app. Choose the network you'd like to use (I deployed to Polygon).
+
+3. Enter the smart contact address and ABI (ABI located at `artifacts/contracts/Greeter/Greeter.sol/Greeter.json`)
+
+![Biconomy setup](setup.png)
+
+4. In __Dapp APIs__, add the `setGreeting` function
+
+5. Create a `.env.local` file in the Next.js project and add the Biconomy API Key:
+
+```sh
+NEXT_PUBLIC_BICONOMY_API_KEY=your-api-key
+```
+
+6. Run the app
+
+```sh
+npm start
+```
