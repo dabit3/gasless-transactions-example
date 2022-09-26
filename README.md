@@ -22,7 +22,7 @@ npm install
 yarn
 ```
 
-3. Configure `PRIVATE_KEY` and `INFURA_ENDPOINT` environment variables.
+3. Configure `PRIVATE_KEY` and `INFURA_ENDPOINT` environment variables in `hardhat.config.js`.
 
 Also if you are deploying to a network other than Polygon, you can configure that information in `hardhat.config.js`.
 
